@@ -118,7 +118,7 @@ class MyTableViewController: UITableViewController {
         // format in the table view cells
         //
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "localeChanged:",
+            selector: #selector(MyTableViewController.localeChanged(_:)),
             name: NSCurrentLocaleDidChangeNotification,
             object: nil)
     }
@@ -169,7 +169,7 @@ class MyTableViewController: UITableViewController {
         var hasDatePicker = false
         
         var targetedRow = indexPath.row
-        targetedRow++
+        targetedRow += 1
         
         let checkDatePickerCell =
         self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: targetedRow, inSection: 0))
@@ -263,7 +263,7 @@ class MyTableViewController: UITableViewController {
         //
         var modelRow = indexPath.row
         if self.datePickerIndexPath != nil && self.datePickerIndexPath!.row <= indexPath.row {
-            modelRow--
+            modelRow -= 1
         }
         
         let itemData = self.dataArray[modelRow]
