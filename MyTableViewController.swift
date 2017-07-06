@@ -165,7 +165,7 @@ class MyTableViewController: UITableViewController {
     
     @param indexPath The indexPath to check if its cell has a UIDatePicker below it.
     */
-    fileprivate func hasPickerForIndexPath(_ indexPath: IndexPath) -> Bool {
+    private func hasPickerForIndexPath(_ indexPath: IndexPath) -> Bool {
         var hasDatePicker = false
         
         var targetedRow = indexPath.row
@@ -181,7 +181,7 @@ class MyTableViewController: UITableViewController {
     
     /*! Updates the UIDatePicker's value to match with the date of the cell above it.
     */
-    fileprivate func updateDatePicker() {
+    private func updateDatePicker() {
         guard let datePickerIndexPath = self.datePickerIndexPath else {return}
         let associatedDatePickerCell = self.tableView.cellForRow(at: datePickerIndexPath)
         
@@ -194,7 +194,7 @@ class MyTableViewController: UITableViewController {
     
     /*! Determines if the UITableViewController has a UIDatePicker in any of its cells.
     */
-    fileprivate var hasInlineDatePicker: Bool {
+    private var hasInlineDatePicker: Bool {
         return (self.datePickerIndexPath != nil)
     }
     
@@ -202,7 +202,7 @@ class MyTableViewController: UITableViewController {
     
     @param indexPath The indexPath to check if it represents a cell with the UIDatePicker.
     */
-    fileprivate func indexPathHasPicker(_ indexPath: IndexPath) -> Bool {
+    private func indexPathHasPicker(_ indexPath: IndexPath) -> Bool {
         return self.hasInlineDatePicker && self.datePickerIndexPath!.row == indexPath.row
     }
     
@@ -210,7 +210,7 @@ class MyTableViewController: UITableViewController {
     
     @param indexPath The indexPath to check if it represents start/end date cell.
     */
-    fileprivate func indexPathHasDate(_ indexPath: IndexPath) -> Bool {
+    private func indexPathHasDate(_ indexPath: IndexPath) -> Bool {
         var hasDate = false
         
         if indexPath.row == kDateStartRow ||
@@ -287,7 +287,7 @@ class MyTableViewController: UITableViewController {
     
     @param indexPath The indexPath to reveal the UIDatePicker.
     */
-    fileprivate func toggleDatePickerForSelectedIndexPath(_ indexPath: IndexPath) {
+    private func toggleDatePickerForSelectedIndexPath(_ indexPath: IndexPath) {
         self.tableView.beginUpdates()
         
         let indexPaths = [IndexPath(row: indexPath.row + 1, section: 0)]
@@ -308,7 +308,7 @@ class MyTableViewController: UITableViewController {
     
     @param indexPath The indexPath to reveal the UIDatePicker.
     */
-    fileprivate func displayInlineDatePickerForRowAtIndexPath(_ indexPath: IndexPath) {
+    private func displayInlineDatePickerForRowAtIndexPath(_ indexPath: IndexPath) {
         // display the date picker inline with the table content
         self.tableView.beginUpdates()
         
@@ -412,7 +412,7 @@ class MyTableViewController: UITableViewController {
         let cell = self.tableView.cellForRow(at: targetedCellIndexPath)
         
         // update our data model
-        self.dataArray[targetedCellIndexPath.row][kDateKey] = targetedDatePicker.date as AnyObject?
+        self.dataArray[targetedCellIndexPath.row][kDateKey] = targetedDatePicker.date
         
         // update the cell's date string
         cell?.detailTextLabel!.text = self.dateFormatter.string(from: targetedDatePicker.date)
